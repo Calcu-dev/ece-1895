@@ -1,0 +1,8 @@
+Some known issues w/ code + hardware :
+- when halfway between on/off the software always pulls up
+	- half push of a button will continuously "press" the button
+	- halfway between rotary encoder position, software thinks it keeps turning
+- when checking one input, the other input can still set off the checkAction
+	- seemingly randomly the rotary encoder will set off the button press
+	- a button press will increase the rotary "loading" by about 25% but sometimes not that
+- upon startup, odd text will be spit out by the serial display before "Start!"
