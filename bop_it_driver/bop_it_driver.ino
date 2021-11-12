@@ -1,24 +1,51 @@
 #include "FastLED.h"
-#define NUM_LEDS_PER_STRIP 60
+#define NUM_LEDS_PER_STRIP 50
+#define COLOR_ORDER RGB
 
 CRGB leds[50];
+int score;
 
 void setup() {
   // put your setup code here, to run once:
-  FastLED.addLeds<NEOPIXEL, 22>(leds, NUM_LEDS_PER_STRIP);
+  FastLED.addLeds<WS2811, 22, COLOR_ORDER>(leds, NUM_LEDS_PER_STRIP);
 
-  
+  pinMode(21, INPUT);
+
+  score = 0;
+
+//  setupLED();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
-  leds[0] = CRGB::White;
+  leds[score / 10].r = 0;
+  leds[score % 10].r = 0;  
+
+  delay(500);
+
+  if(score > 30)
+  {
+    score = 0;
+  }
+  score++;
+
+  leds[score / 10].r = 255;
+  leds[score % 10].r = 255;
+
   FastLED.show();
-  delay(1000);
-  leds[1] = CRGB::Red;
-  FastLED.show();
-  delay(1000);
 
+  if(digitalRead(21) == HIGH){
+    printf("HIGH\n");
+  }
+  else{
+    printf("LOW\n");
+  }
+}
 
+void setupLED(){
+//  int k = 255;
+//  for(int i = 0; i < NUM_LEDS_PER_STRIP; i++){
+//    leds[i].r = k;
+//  }
+//  FastLED.show();
 }
